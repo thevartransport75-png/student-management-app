@@ -10,5 +10,7 @@ function addStudent() {
         document.getElementById("studentList").appendChild(li);
 
         document.getElementById("studentName").value = "";
+        li.innerHTML =name + ' <button onclick="this.parentElement.remove()">Delete</button>';
+
     }
 }
