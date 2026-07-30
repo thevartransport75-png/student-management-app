@@ -3,13 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                url: 'https://github.com/your-username/your-repository.git'
-            }
-        }
-
         stage('Verify Files') {
             steps {
                 bat 'dir'
@@ -24,7 +17,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Website is ready for deployment.'
+                echo 'Website is ready.'
             }
         }
     }
@@ -33,7 +26,6 @@ pipeline {
         success {
             echo 'Pipeline completed successfully.'
         }
-
         failure {
             echo 'Pipeline failed.'
         }
