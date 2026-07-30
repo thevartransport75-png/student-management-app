@@ -1,31 +1,41 @@
 pipeline {
-
     agent any
 
     stages {
 
-        stage('Install Dependencies') {
+        stage('Checkout') {
             steps {
-                bat 'pip install -r requirements.txt'
+                git branch: 'main',
+                url: 'https://github.com/your-username/your-repository.git'
+            }
+        }
+
+        stage('Verify Files') {
+            steps {
+                bat 'dir'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'python app.py'
+                echo 'Static HTML project - No build required.'
             }
         }
 
-        stage('Test') {
+        stage('Deploy') {
             steps {
-                bat 'pytest --junitxml=test-results.xml'
+                echo 'Website is ready for deployment.'
             }
         }
     }
 
     post {
-        always {
-            junit '**/test-results.xml'
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+
+        failure {
+            echo 'Pipeline failed.'
         }
     }
 }
